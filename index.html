@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>Habbit Tracker</title>
+</head>
+<body>
+    <section class="interface">
+        <div class="left__panel">
+            <a href="#" class="left__panel-logolink">
+                <img src="./images/LogoHabbit.svg" alt="Habbit" class="left_panel-logoimg">
+            </a>
+            <nav class="menu">
+                <ul class="menu__list">
+                    <li class="menu__item  menu__item-active" habbit-id="1">
+                        <button class="menu__link btn-panel">
+                            <img src="./images/Dumbell.svg" alt="Dumbell" class="menu__img-icon">
+                        </button>
+                    </li>
+                    <li class="menu__item" habbit-id="2">
+                        <button class="menu__link btn-panel">
+                            <img src="./images/Water.svg" alt="" class="menu__img-icon">
+                        </button>
+                    </li>
+                    <li class="menu__item" habbit-id="3"> 
+                        <button class="menu__link btn-panel">
+                            <img src="./images/Eat.svg" alt="" class="menu__img-icon">
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <button class="menu__link btn-panel btn-panel-add">
+                <img src="./images/Add.svg" alt="" class="menu__img-icon">
+            </button>
+            
+        </div>
+        <div class="right-block">
+            <header class="header">
+                <h1 class="header__title"></h1>
+                <div class="progress">
+                    <div class="progress__info">
+                        <h5 class="progress__title">Прогресс</h5>
+                        <p class="progress__procent"></p>
+                    </div>
+                    <div class="progress__bar">
+                        <div class="progress_bar-dls"></div>
+                    </div>
+                </div>
+            </header>
+            <main class="main">
+                <div class="days__block">
+                </div>
+            </main>
+        </div>
+    </section>
+    <script src="./scripts/app.js"></script>
+</body>
+</html>
