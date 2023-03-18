@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/normalize.css">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link rel="stylesheet" href="./styles/main.css">
     <title>Habbit Tracker</title>
 </head>
@@ -19,7 +21,7 @@
             </a>
             <nav class="menu">
                 <ul class="menu__list">
-                    <li class="menu__item  menu__item-active" habbit-id="1">
+                    <!-- <li class="menu__item  menu__item-active" habbit-id="1">
                         <button class="menu__link btn-panel">
                             <img src="./images/Dumbell.svg" alt="Dumbell" class="menu__img-icon">
                         </button>
@@ -33,13 +35,29 @@
                         <button class="menu__link btn-panel">
                             <img src="./images/Eat.svg" alt="" class="menu__img-icon">
                         </button>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
-            <button class="menu__link btn-panel btn-panel-add">
+            <button  data-fancybox class="menu__link btn-panel btn-panel-add" data-src="#dialog-content">
                 <img src="./images/Add.svg" alt="" class="menu__img-icon">
             </button>
-            
+            <div class="habbit__popup" id="dialog-content" style="position: absolute;top: -300%;;max-width:500px;">
+                <h2 class="habbit__popup-title">Новая привычка</h2>
+                <p class="habbit__popup-subtitle">Иконка</p>
+                <div class="habbit__popup-icons">
+                    <ul class="habbit__popup-icons-list">
+                        <li habbit-icon="sport" ><button onclick="iconSelect()"  class=" habbit__popup-icons-list-active habbit_popup-btnIcon"><img src="./images/sport.svg" alt="Sport" class="habbit__popup-img"></button></li>
+                        <li habbit-icon="water"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/water.svg" alt="Water" class="habbit__popup-img"></button></li>
+                        <li habbit-icon="food"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/food.svg" alt="Food" class="habbit__popup-img"></button></li>
+                    </ul>
+                </div>
+                <div class="form__habbit">
+                    <input type="text" class="form__habbit-inp form__habbit-name" placeholder="Название">
+                    <input type="number" class="form__habbit-inp form__habbit-target" placeholder="Цель">
+                </div>
+                    <button onclick='AddNewHabbit()' class="form__habbit-btn">Добавить</button>
+            </div>
+
         </div>
         <div class="right-block">
             <header class="header">
@@ -56,6 +74,7 @@
             </header>
             <main class="main">
                 <div class="days__block">
+                  
                 </div>
             </main>
         </div>
