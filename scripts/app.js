@@ -4,14 +4,10 @@ const HABBIT_KEY ='HABBIT_KEY'
 const habbitsString = localStorage.getItem(HABBIT_KEY);
 let habbitsArray = JSON.parse(habbitsString);
 
-
-
 (()=>{
     initPanel();
     initHabbit();
 })();
-
-
 
 
 function initHabbit (){
@@ -24,7 +20,7 @@ function initHabbit (){
     });
     console.log(thisHabbit);
    if(thisHabbit.days.length!==0){
-        const thishabbitProcent = String((thisHabbit.days.length/thisHabbit.target)*100); 
+        const thishabbitProcent = String(((thisHabbit.days.length/thisHabbit.target)*100).toFixed(0)); 
         document.querySelector('.header__title').innerText = thisHabbit.name;
         document.querySelector('.progress__procent').innerText = `${thishabbitProcent}%`;
         document.querySelector('.progress_bar-dls').style.width = thishabbitProcent+'%';
@@ -98,7 +94,7 @@ document.querySelectorAll('.menu__list > li').forEach((n, i, a) => {
 
     function addHabbitComment(){
         const habbitsString = localStorage.getItem(HABBIT_KEY);
-let habbitsArray = JSON.parse(habbitsString);
+        let habbitsArray = JSON.parse(habbitsString);
             const inputNewHabbit = document.querySelector('.input-icon').value;
             const attrId = document.querySelector('.menu__item-active').getAttribute('habbit-id');
             let thisHabbitAdd = habbitsArray.find(els => {
@@ -167,4 +163,23 @@ function initPanel(){
         }
         document.querySelector('.menu__item').classList.add('menu__item-active');
          initHabbit();
+}
+
+function deleteHabbitComment(){
+    let delHabbitString = localStorage.getItem(HABBIT_KEY);
+    let delHabbitArray = JSON.parse(delHabbitString);
+
+    const thisHabbitId = document.querySelector('.habbit__delete').getAttribute('btn-habbit-dlt');
+    const thisHabbitObj=document.querySelector('.menu__item-active').getAttribute('habbit-id');
+
+    const needHabbit = delHabbitArray.find(elemDel=>{
+        return elemDel.id==thisHabbitObj;
+    })
+    console.log(needHabbit);
+    const delHabbit = needHabbit.days.splice(thisHabbitId,1);
+
+    delHabbitArray = JSON.stringify(delHabbitArray);
+    localStorage.setItem(HABBIT_KEY, delHabbitArray);
+
+    initHabbit();
 }
