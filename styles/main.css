@@ -295,7 +295,7 @@ background: #e3e1fd;
     filter: hue-rotate(0deg);
 }
 .error-message{
-    display: none;
+    visibility: hidden;
     position: absolute;
     left: 10%;
     top: 125%;
@@ -318,7 +318,7 @@ background: #e3e1fd;
 
 }
 .error-message-active{
-    display: block;
+    visibility: visible;
 }
 .final-text>.habbit__day{
     background-color: #d7fad3;
