@@ -1,31 +1,15 @@
 [
     {
         "id":1,
-        "icon": "sport",
-        "name": "Отжуманя",
-        "target": 10,
-        "days": [
-            {"comment": "Первый подход всегда даётся тяжело"},
-            {"comment": "Второй день уже проще"}
-        ]
-    },
-    {
-        "id":2,
-        "icon": "water",
-        "name": "Ежедневно пить 6 литров воды",
+        "icon": "exclamation-mark",
+        "name": "Пример",
         "target": 5,
         "days": [
-            {"comment": "Выпил 3 литра воды и 3 бутылки водки"},
-            {"comment": "В меня больше не влезет((("}
-        ]
-    },
-    {
-        "id":3,
-        "icon": "food",
-        "name": "Правильное питание",
-        "target": 10,
-        "days": [
-            {"comment": "Строгая диета"}
+            {"comment": "Первый комментарий"},
+            {"comment": "Второй комментарий"},
+            {"comment": "Третий комментарий"},
+            {"comment": "Четвертый комментарий"},
+            {"comment": "Пятый комментарий Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi vel illum officiis dignissimos dolor recusandae dolores, eveniet corporis voluptatibus ut, voluptatum itaque quos sed sunt deserunt numquam alias expedita accusamus."}
         ]
     }
 ]

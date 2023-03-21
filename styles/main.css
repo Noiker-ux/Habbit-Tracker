@@ -111,15 +111,17 @@ color: #232360;
     background: #fff;
     border-radius: 10px;
     display: flex; 
-    align-items: center;
     -webkit-box-shadow: 4px 4px 13px -8px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 13px -8px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 13px -8px rgba(34, 60, 80, 0.2);
 }
+.obv-habbit-comment-form{
+    padding: 0;
+    width: 100%;
+    margin: auto;
+}
 .habbit__day{
     border-radius: 10px 0 0 10px;
-    background: #FBFAFF;
-    border-right: 1px solid #E7EBFB;
     padding: 20px 40px;
     min-width: 150px;
 }
@@ -130,6 +132,9 @@ color: #232360;
     padding: 20px 25px;
 }
 .habbit__delete{
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 45px;
     margin-left: auto;
     margin-right: 20px;
     border: none;
@@ -149,6 +154,15 @@ color: #232360;
     font-family: 'Comfortaa', cursive;
     flex: 1;
     position: relative;
+}
+.obv-habbit-day{
+    background: #FBFAFF;
+    border-right: 1px solid #E7EBFB;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.obv-habbit-comment{
+    display: contents;
 }
 .input-icon::placeholder{
     color: #8899A8;
@@ -174,7 +188,21 @@ color: #232360;
     cursor: pointer;
     font-weight: 500;
 }
-.habbit__add:hover{
+.noShowMore{
+    background: #EDECFE;
+    border-radius: 9px;
+    transition:  all .5s ease;
+    color: #5051F9;
+    font-size: 13px;
+    padding: 14px 32px;
+    border: 1px solid #4c4cff;
+    cursor: pointer;
+    font-weight: 500;
+    display: block;
+    margin: auto;
+    outline: none;
+}
+.habbit__add:hover, .noShowMore:hover{
     background-color: #e0ddff;
 }
 .input-icon-img{
@@ -185,6 +213,10 @@ color: #232360;
 .menu__item-active>.menu__link{
 
     background: #5252ff;
+}
+.menu__img-icon{
+    width: 25px;
+    height: 25px;
 }
 .menu__item-active>.menu__link>.menu__img-icon{
     filter: brightness(300%);
@@ -220,12 +252,17 @@ color: #232360;
 .habbit_popup-btnIcon{
     padding: 10px 12px;
     border-radius: 14px;
+    background: aliceblue;
     border: 1px solid #5051F9;
     cursor: pointer;
     transition: all .5s ease;
 }
 .habbit_popup-btnIcon:hover{
     background-color: #5051F9;
+}
+.habbit__popup-img{
+    width: 25px;
+    height: 25px;
 }
 .habbit_popup-btnIcon:hover > .habbit__popup-img{
     filter: brightness(300%);
@@ -285,41 +322,11 @@ background: #e3e1fd;
     border: none;
 }
 .input-icon-error{
-    border: 1px solid #c40404;
-    background: #ffb0b0;
+    border: 3px solid #d11c1cfb;  
 }
-.input-icon-error::placeholder{
-    color: rgb(255, 0, 0);
-}
-.input-icon-img-error{
-    filter: hue-rotate(0deg);
-}
-.error-message{
-    visibility: hidden;
-    position: absolute;
-    left: 10%;
-    top: 125%;
-    width: auto;
-    padding: 10px;
-    background-color: #ffb0b0;
-    border-radius: 10px;
-    z-index: 2;
-}
-.error-message::before{
-    content: '';
-    position: absolute;
-    left: 40%;
-    top: -8px;
-    transform: rotate(45deg);
-    width: 20px;
-    height: 20px;
-    z-index: 1;
-    background-color: #ffb0b0;
 
-}
-.error-message-active{
-    visibility: visible;
-}
+
+
 .final-text>.habbit__day{
     background-color: #d7fad3;
     padding: 20px 25px 0px 25px;

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/Logomark.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/normalize.css">
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
@@ -34,6 +35,8 @@
                         <li habbit-icon="sport" ><button onclick="iconSelect()"  class=" habbit__popup-icons-list-active habbit_popup-btnIcon"><img src="./images/sport.svg" alt="Sport" class="habbit__popup-img"></button></li>
                         <li habbit-icon="water"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/water.svg" alt="Water" class="habbit__popup-img"></button></li>
                         <li habbit-icon="food"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/food.svg" alt="Food" class="habbit__popup-img"></button></li>
+                        <li habbit-icon="exclamation-mark"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/exclamation-mark.svg" alt="exclamation-mark" class="habbit__popup-img"></button></li>
+                        <li habbit-icon="book"><button onclick="iconSelect()"  class="habbit_popup-btnIcon"><img src="./images/book.svg" alt="book" class="habbit__popup-img"></button></li>
                     </ul>
                 </div>
                 <div class="form__habbit">
@@ -42,7 +45,9 @@
                 </div>
                     <button onclick='AddNewHabbit()' class="form__habbit-btn">Добавить</button>
             </div>
-
+            <div class="habbit__popup-error" id="error-name" style="display:none;max-width:500px;">
+                <p></p>
+            </div>
         </div>
         <div class="right-block">
             <header class="header">

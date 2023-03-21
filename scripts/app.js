@@ -2,13 +2,39 @@
 'use strict';
 // ключ для LocalStorage
 const HABBIT_KEY ='HABBIT_KEY'
+const HELP_KEY = 'HELP_KEY'
 const habbitsString = localStorage.getItem(HABBIT_KEY);
 let habbitsArray = JSON.parse(habbitsString);
 // Первая инициализация проекта(инициализация пенели + инициализация основы)
 (()=>{
+    helpEducation();
     initPanel();
     initHabbit();
 })();
+
+
+function helpEducation(){
+    let  NeedKey = localStorage.getItem(HELP_KEY);
+    NeedKey === '0'?NeedKey=false:NeedKey=true;
+    if(NeedKey) {
+        return;
+    } else {
+        Fancybox.show([{ src: "#error-name", closeButton: true }]);
+        document.querySelector('.habbit__popup-error').innerHTML=
+        `<p style='text-align:center;'>Habbit Tracker</p><br/>
+        <p style='text-align:left;'>Программа помогает в закреплении привычек, будь то саморазвитие, спорт, правильное питание и т.д.<br/><br/> Также программа позволяет фиксировать комментарии ко дням.<br/><br/> В левой панели вы увидите поставленные вами цели. В правой же подробную информацию, о достижении своей цели.</p>
+        <br/><p style='text-align:left;'>ВАЖНО!!! Программа НЕ ДАСТ вам отказаться от поставленной привычки. <br/><br/> Удалить поставленную привычку можно только после достижения цели.</p>
+        <br/><button onclick='nowShowHelp()' class='noShowMore'>Больше не показывать</button>`;   
+        return;
+    }
+}
+
+function nowShowHelp(){
+    let helper = localStorage.getItem(HELP_KEY);
+    helper='1';
+    localStorage.setItem(HELP_KEY,helper);
+    Fancybox.close([{src: "#error-name"}]);
+}
 
 // Инициализация основы
 function initHabbit (){
@@ -32,11 +58,12 @@ function initHabbit (){
                 let divHabbit = document.createElement("div");
                 divHabbit.innerHTML=`
                         <div class="habbit">
-                        <p class="habbit__day">День ${indeOnlyDays+1}</p>
-                        <p class="habbit__comment">${elemHabbitDay.comment}</p>
-                        <button onclick='deleteHabbitComment()' class="habbit__delete" btn-habbit-dlt='${indeOnlyDays}'>
-                            <img src="./images/shape.svg" alt="Delete" class="habbit__delete-img" btn-habbit-dlt='${indeOnlyDays}'>
-                        </button>
+                        <div class='obv-habbit-day'><p class="habbit__day">День ${indeOnlyDays+1}</p></div>
+                        <div class='obv-habbit-comment'><p class="habbit__comment">${elemHabbitDay.comment}</p>
+                            <button onclick='deleteHabbitComment()' class="habbit__delete" btn-habbit-dlt='${indeOnlyDays}'>
+                                <img src="./images/shape.svg" alt="Delete" class="habbit__delete-img" btn-habbit-dlt='${indeOnlyDays}'>
+                            </button>
+                        </div>
                     </div>
                 `;
                 document.querySelector(".days__block").appendChild(divHabbit);
@@ -46,14 +73,13 @@ function initHabbit (){
                 let divHabbitAdd = document.createElement("div");
                     divHabbitAdd.innerHTML=`
                     <div class="habbit">
-                        <p class="habbit__day">День ${indeOnlyDays+1}</p>
-                        <div class="habbit__form">
+                    <div class='obv-habbit-day'><p class="habbit__day">День ${indeOnlyDays+1}</p></div>
+                    <div class='obv-habbit-comment-form'><div class="habbit__form">
                             <input class='input-icon' type="text" placeholder="Комментарий">
                             <img src="./images/Comment.svg" alt="Comment" class="input-icon-img">
-                            <span class='error-message'>Ошибка! \n Не введен комментарий дня.</span>
                             <button  class="habbit__add" onclick='addHabbitComment()' btn-habbit-add='${indeOnlyDays}'>Добавить</button>
                         </div>
-                    
+                    </div>
                     </div>
                     `;
                     document.querySelector(".days__block").appendChild(divHabbitAdd);
@@ -82,11 +108,12 @@ function initHabbit (){
                 let divHabbitAdd = document.createElement("div");
                 divHabbitAdd.innerHTML=`
                 <div class="habbit">
-                    <p class="habbit__day">День ${indeOnlyDays+1}</p>
-                    <div class="habbit__form">
+                <div class='obv-habbit-day'><p class="habbit__day">День ${indeOnlyDays+1}</p></div>
+                <div class='obv-habbit-comment-form'><div class="habbit__form">
                         <input class='input-icon' type="text" placeholder="Комментарий">
                         <img src="./images/Comment.svg" alt="Comment" class="input-icon-img">
                         <button  class="habbit__add" onclick='addHabbitComment()' btn-habbit-add='${indeOnlyDays}'>Добавить</button>
+                        </div>
                     </div>
                 </div>
                 `;
@@ -114,9 +141,9 @@ function addHabbitComment(){
     let habbitsArray = JSON.parse(habbitsString);
     const inputNewHabbit = document.querySelector('.input-icon').value;
     if (inputNewHabbit.length==0){
-        document.querySelector('.input-icon').classList.add('input-icon-error');
-        document.querySelector('.input-icon-img').classList.add('input-icon-img-error');
-        document.querySelector('.error-message').classList.add('error-message-active');
+        Fancybox.show([{ src: "#error-name", closeButton: true }]);
+        document.querySelector('.habbit__popup-error').innerHTML=`<p style='text-align:center;'>Ошибка ввода коментария</p><br/>
+        <p style='text-align:center;'>Коментарий дня не может быть пустым, пожалуйста заполните поле и повторите попытку заново.</p>`; 
         return;
     } else{
         const attrId = document.querySelector('.menu__item-active').getAttribute('habbit-id');
@@ -148,24 +175,41 @@ function AddNewHabbit(){
     let newHabbitArray = JSON.parse(newHabbitString);
     const newHabbitName = document.querySelector('.form__habbit-name').value;
     const newHabbitTarget = document.querySelector('.form__habbit-target').value;
-    const newHabbitIcon = document.querySelector('.habbit__popup-icons-active').getAttribute('habbit-icon');
-    let randomId = 0;
-    for (let elemHab of newHabbitArray){
-        if (randomId<=elemHab.id){
-            randomId = elemHab.id+1;
-        }
+    
+    if(newHabbitName.length==0){
+        Fancybox.show([{ src: "#error-name", closeButton: true }]);
+        document.querySelector('.habbit__popup-error').innerHTML=`<p style='text-align:center;'>Ошибка ввода имени!</p><br/>
+        <p style='text-align:center;'>Поле "Название" не может быть пустым! </p>`;   return;
     }
-    newHabbitArray.push({
-        id: randomId,
-        icon: `${newHabbitIcon}`,
-        name: `${newHabbitName}`,
-        target: newHabbitTarget,
-        days: []
-    })
-    newHabbitArray = JSON.stringify(newHabbitArray);
-    localStorage.setItem(HABBIT_KEY, newHabbitArray);
-    initPanel();
-    initHabbit();
+    if (newHabbitTarget<=0){
+        Fancybox.show([{ src: "#error-name", closeButton: true }]);
+        document.querySelector('.habbit__popup-error').innerHTML=`<p style='text-align:center;'>Ошибка ввода количества дней!</p><br/>
+        <p style='text-align:center;'>Поле "Цель" не может быть пустым, быть отрицательным или равняться нулю!</p>`;   return;
+    }
+    try {
+        const newHabbitIcon = document.querySelector('.habbit__popup-icons-active').getAttribute('habbit-icon');
+        let randomId = 0;
+        for (let elemHab of newHabbitArray){
+            if (randomId<=elemHab.id){
+                randomId = elemHab.id+1;
+            }
+        }
+        newHabbitArray.push({
+            id: randomId,
+            icon: `${newHabbitIcon}`,
+            name: `${newHabbitName}`,
+            target: newHabbitTarget,
+            days: []
+        })
+        newHabbitArray = JSON.stringify(newHabbitArray);
+        localStorage.setItem(HABBIT_KEY, newHabbitArray);
+        initPanel();
+        initHabbit();
+    } catch{
+        Fancybox.show([{ src: "#error-name", closeButton: true }]);
+        document.querySelector('.habbit__popup-error').innerHTML=`<p style='text-align:center;'>Ошибка выбора иконки!</p><br/>
+        <p style='text-align:center;'>Пожалуйста выберите иконку привычки и повторите попытку заново.</p>`;   return;
+    }
 };
 // Инициализация левой панели
 function initPanel(){
