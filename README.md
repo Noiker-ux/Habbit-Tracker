@@ -10,6 +10,7 @@ Habbit Tracker
   <li>Запустите файл index.html и откройте консоль разработчика</li>
   <li>Найдите вкладку "Приложение" и подпункт "Локальные хранилища"</li>
   <li>В качестве ключа пропишите HABBIT_KEY, а в разделе данных вставьте все из файла demo.json</li>
+  <li>Также создайте второй ключ в LocalStorage ключ - HELP_KEY, значение - 0</li>
 </ul>
 <h2>Использование:</h2>
 <p>При первом запуске программы вы получите инструкцию по использованию программы</p>
@@ -19,6 +20,7 @@ Habbit Tracker
 <ul>
 <li>HTML5 + Методология БЭМ</li>
 <li>CSS3</li>
+<li>FancyBox - https://fancyapps.com/fancybox/</li>
 <li>Чистый JavaScript + ES6</li>
 <li>Normalize css - https://necolas.github.io/normalize.css/</li>
 <li>LocalStorage + JSON</li>
