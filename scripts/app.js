@@ -7,6 +7,7 @@ const habbitsString = localStorage.getItem(HABBIT_KEY);
 let habbitsArray = JSON.parse(habbitsString);
 // Первая инициализация проекта(инициализация пенели + инициализация основы)
 (()=>{
+    basicLoad();
     helpEducation();
     initPanel();
     initHabbit();
@@ -108,13 +109,15 @@ function initHabbit (){
                 let divHabbitAdd = document.createElement("div");
                 divHabbitAdd.innerHTML=`
                 <div class="habbit">
-                <div class='obv-habbit-day'><p class="habbit__day">День ${indeOnlyDays+1}</p></div>
-                <div class='obv-habbit-comment-form'><div class="habbit__form">
+                    <div class='obv-habbit-day'>
+                        <p class="habbit__day">День ${indeOnlyDays+1}</p>
+                    </div>
+                    <div class='obv-habbit-comment-form'><div class="habbit__form">
                         <input class='input-icon' type="text" placeholder="Комментарий">
                         <img src="./images/Comment.svg" alt="Comment" class="input-icon-img">
                         <button  class="habbit__add" onclick='addHabbitComment()' btn-habbit-add='${indeOnlyDays}'>Добавить</button>
-                        </div>
                     </div>
+                </div>
                 </div>
                 `;
                 document.querySelector(".days__block").appendChild(divHabbitAdd);
@@ -276,4 +279,11 @@ function AllDeleteHabbit(){
     localStorage.setItem(HABBIT_KEY, AllHabbitArray);
     initPanel();
     initHabbit();
+}
+// базавая подгрузка
+function basicLoad(){
+    if (localStorage.getItem(HABBIT_KEY)===null ||  localStorage.getItem(HELP_KEY)===null){
+        localStorage.setItem(HABBIT_KEY, JSON.stringify(data));
+        localStorage.setItem(HELP_KEY, 0);
+    }
 }
